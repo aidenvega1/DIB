@@ -1,0 +1,148 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: "Segoe UI", system-ui, Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+[hidden] { display: none !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+button, input, select, textarea { font: inherit; }
+:focus-visible { outline: 3px solid #4da3ff; outline-offset: 2px; }
+
+/* ---------- Landing ---------- */
+.landing {
+  height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 36px; padding: 20px;
+}
+.big-note {
+  width: min(320px, 80vw); aspect-ratio: 1; background: #ff9ecb;
+  display: flex; align-items: center; justify-content: center;
+  transform: rotate(-3deg);
+  box-shadow: 0 14px 30px rgba(255, 158, 203, 0.25), 0 4px 10px rgba(0,0,0,.6);
+}
+.big-note h1 {
+  margin: 0; color: #222; font-size: 2.4rem; text-align: center;
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+}
+.landing-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.btn-white {
+  background: #fff; color: #000; border: 2px solid #fff; border-radius: 8px;
+  padding: 12px 28px; font-size: 1.05rem; font-weight: 600; cursor: pointer;
+}
+.btn-white:hover { background: #e6e6e6; }
+
+/* ---------- App ---------- */
+.app { height: 100%; display: flex; flex-direction: column; background: #0d1117; }
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 20px; background: #161b22; border-bottom: 1px solid #30363d;
+}
+.logo { font-weight: 700; color: #ff9ecb; font-size: 1.1rem; }
+.top-actions { display: flex; gap: 8px; }
+.btn-top {
+  background: #fff; color: #000; border: none; border-radius: 6px;
+  padding: 8px 16px; cursor: pointer; font-weight: 600;
+}
+.btn-top:hover { background: #ddd; }
+
+.layout { flex: 1; display: flex; min-height: 0; }
+.sidebar {
+  width: 270px; background: #0d1117; border-right: 1px solid #30363d;
+  padding: 14px; overflow-y: auto; flex-shrink: 0;
+}
+.folder-form { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.folder-form input {
+  flex: 1 1 100%; min-width: 0; padding: 8px; border-radius: 6px;
+  border: 1px solid #30363d; background: #010409; color: #fff;
+}
+.folder-form .btn-add { flex: 1 1 100%; }
+.btn-add {
+  background: #ff9ecb; color: #000; border: none; border-radius: 6px;
+  padding: 8px 10px; font-weight: 700; cursor: pointer;
+}
+.folder-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+
+/* Folders are mini sticky notes */
+.folder-card {
+  color: #222; border-radius: 3px; padding: 8px 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,.5);
+  border: 3px solid transparent;
+}
+.folder-card.active { border-color: #fff; }
+.folder-head { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.folder-name {
+  flex: 1; text-align: left; background: none; border: none; cursor: pointer;
+  font-weight: 700; color: #222; padding: 4px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+  font-family: "Comic Sans MS", "Segoe Print", cursive;
+}
+.icon-btn {
+  background: rgba(0,0,0,.12); border: none; border-radius: 4px; width: 28px; height: 28px;
+  cursor: pointer; color: #222; font-weight: 700; line-height: 1;
+}
+.icon-btn:hover { background: rgba(0,0,0,.28); }
+.folder-notes { margin: 6px 0 0; padding-left: 18px; font-size: .85rem; }
+.folder-card.minimized {
+  width: 44px; height: 44px; padding: 0; display: flex;
+}
+.folder-card.minimized button {
+  width: 100%; height: 100%; background: none; border: none; cursor: pointer;
+  font-weight: 800; font-size: 1.1rem; color: #222;
+}
+
+/* Board — free-form canvas, OneNote-style */
+.board-wrap { flex: 1; padding: 24px; overflow: auto; }
+.board-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.board-head h2 { margin: 0; font-size: 1.4rem; }
+.board-head label { font-size: .9rem; color: #c9d1d9; }
+.board-head select {
+  padding: 8px; border-radius: 6px; background: #010409; color: #fff; border: 1px solid #30363d;
+}
+.empty { color: #8b949e; margin-top: 40px; }
+.notes { position: relative; min-height: 600px; }
+
+.note {
+  position: absolute; width: 250px; color: #222; padding: 8px; border-radius: 3px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.5);
+}
+.note.dragging { opacity: .85; box-shadow: 0 14px 26px rgba(0,0,0,.65); z-index: 50; }
+.note-tools { display: flex; gap: 4px; margin-bottom: 6px; flex-wrap: wrap; align-items: center; }
+.note-tools select { max-width: 80px; border-radius: 4px; border: none; padding: 3px; }
+.tool-btn {
+  background: rgba(0,0,0,.12); border: none; border-radius: 4px; padding: 4px 8px;
+  cursor: pointer; color: #222; font-size: .8rem; font-weight: 600;
+}
+.tool-btn[aria-pressed="true"] { background: #222; color: #fff; }
+.tool-btn:hover { filter: brightness(.85); }
+.note-drag {
+  background: rgba(0,0,0,.12); border-radius: 4px; padding: 4px 8px;
+  color: #222; font-size: .8rem; font-weight: 700; cursor: grab;
+  user-select: none; touch-action: none;
+}
+.note-drag:active { cursor: grabbing; }
+.note-body { position: relative; width: 100%; height: 190px; }
+.note-body textarea {
+  position: absolute; inset: 0; width: 100%; height: 100%; resize: none;
+  background: rgba(255,255,255,.25); border: none; padding: 8px; color: #222;
+  font-family: "Comic Sans MS", "Segoe Print", cursive; font-size: 1rem;
+}
+.note-body canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.note-body canvas.pen-on { pointer-events: auto; cursor: crosshair; touch-action: none; }
+.note-body-image { height: auto; }
+.note-image { width: 100%; display: block; border-radius: 3px; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: #fff; color: #000; padding: 10px 18px; border-radius: 6px;
+  opacity: 0; transition: opacity .3s; pointer-events: none; font-weight: 600;
+}
+.toast.show { opacity: 1; }
+
+@media (max-width: 700px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #30363d; max-height: 40%; }
+}
