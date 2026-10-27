@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sticky Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LANDING SCREEN -->
+  <main id="landing" class="landing">
+    <div class="big-note">
+      <h1>Sticky Tasks</h1>
+    </div>
+    <div class="landing-buttons">
+      <button id="landingCreate" class="btn-white">Create folder</button>
+      <button id="landingLoad" class="btn-white">Load</button>
+    </div>
+  </main>
+
+  <!-- APP SCREEN -->
+  <div id="app" class="app" hidden>
+    <header class="topbar">
+      <span class="logo">Sticky Tasks</span>
+      <div class="top-actions">
+        <button id="loadBtn" class="btn-top">Load</button>
+        <button id="downloadBtn" class="btn-top">Download</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" aria-label="Folders">
+        <form id="folderForm" class="folder-form">
+          <label for="folderName" class="sr-only">New folder name</label>
+          <input id="folderName" type="text" placeholder="New folder name" maxlength="60" required>
+          <label for="folderCodespace" class="sr-only">GitHub Codespace URL (optional)</label>
+          <input id="folderCodespace" type="url" placeholder="Codespace URL (optional)" maxlength="500">
+          <button type="submit" class="btn-add" aria-label="Add folder">+ Folder</button>
+        </form>
+        <ul id="folderList" class="folder-list"></ul>
+      </aside>
+
+      <main class="board-wrap" id="board" aria-live="polite"></main>
+    </div>
+  </div>
+
+  <input type="file" id="fileInput" accept=".json,application/json" hidden>
+  <input type="file" id="imageInput" accept="image/*" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
